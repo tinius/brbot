@@ -23,9 +23,9 @@ const emoji = (resi) => {
 
 const getSubject = (arr) => {
   if (arr.filter(highPrio).length > 0) {
-    return "⚠️ Great slot available at BR";
+    return "⚠️⚠️⚠️ Great slot available at BR";
   } else {
-    return "Latest slots available at BR";
+    return `${arr.length} slots available at BR`;
   }
 };
 
@@ -102,10 +102,13 @@ async function main() {
 
     if (true) {
       console.log("Sending email...");
+
+      const code = Math.random().toString(36).substring(2, 7).toUpperCase();
+
       const msg = {
         to: emailTo,
         from: "nkommenda@hotmail.com", // can be any verified sender in SendGrid
-        subject: getSubject(available),
+        subject: `${getSubject(available)} (${code})`,
         html: `
       
         <h3>Here are the latest slots at BR: </h3>
@@ -118,8 +121,8 @@ async function main() {
       console.log(msg.subject);
       console.log(msg.html);
 
-      await sgMail.send(msg);
-      console.log("Email sent!");
+      //   await sgMail.send(msg);
+      //   console.log("Email sent!");
     }
   } catch (err) {
     console.error("Error:", err);
