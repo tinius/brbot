@@ -112,6 +112,7 @@ async function main() {
         html: `
       
         <h3>Here are the latest slots at BR: </h3>
+        <p>${new Date()}</p>
       ${available
         .map((row) => `<p>${emoji(row)}${row.displayString} (${row.meal})</p>`)
         .join("")}
