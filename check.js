@@ -89,7 +89,7 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 
 const url = `${baseUrl}${urlSuffix}`;
 
-console.log(url);
+console.log("token", token);
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
