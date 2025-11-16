@@ -121,8 +121,8 @@ async function main() {
       console.log(msg.subject);
       console.log(msg.html);
 
-      //   await sgMail.send(msg);
-      //   console.log("Email sent!");
+      await sgMail.send(msg);
+      console.log("Email sent!");
     }
   } catch (err) {
     console.error("Error:", err);
