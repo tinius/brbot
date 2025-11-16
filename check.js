@@ -25,7 +25,7 @@ const getSubject = (arr) => {
   if (arr.filter(highPrio).length > 0) {
     return "⚠️⚠️⚠️ Great slot available at BR";
   } else {
-    return `${arr.length} slots available at BR`;
+    return `${arr.length} slot${arr.length === 1 ? "" : "s"} available at BR`;
   }
 };
 
@@ -100,7 +100,7 @@ async function main() {
 
     console.log(available);
 
-    if (true) {
+    if (available.length > 0) {
       console.log("Sending email...");
 
       const code = Math.random().toString(36).substring(2, 7).toUpperCase();
@@ -108,14 +108,16 @@ async function main() {
       const msg = {
         to: emailTo,
         from: "nkommenda@hotmail.com", // can be any verified sender in SendGrid
-        subject: `${getSubject(available)} (${code})`,
+        subject: `${getSubject(available)} (#${code})`,
         html: `
       
         <h3>Here are the latest slots at BR: </h3>
-        <p>${new Date()}</p>
       ${available
         .map((row) => `<p>${emoji(row)}${row.displayString} (${row.meal})</p>`)
         .join("")}
+
+        <p>------</p>
+        <p><em>Sent on ${new Date()}</em></p>
   `,
       };
 
